@@ -21,7 +21,7 @@ export default function TodoInput({ addTodo }: todoInputProps) {
                 <input
                     id='todo'
                     type='text'
-                    className='p-3 rounded-md bg-white dark:bg-VeryDarkDesaturatedBlue md:w-[500px] w-[350px] pl-10 focus:outline-none dark:text-LightGrayishBlue mb-5 transition-all duration-1000'
+                    className='p-3 rounded-md bg-white dark:bg-VeryDarkDesaturatedBlue md:w-[500px] w-[350px] pl-10 focus:outline-none dark:text-LightGrayishBlue mb-5 transition-all duration-200'
                     placeholder='Create a new todo...'
                     ref={todoRef}
                     onKeyDown={(e) => {

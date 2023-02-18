@@ -15,27 +15,32 @@ function App() {
     const dummyTodo = [
         {
             id: 1,
-            todo: 'test1',
+            todo: 'Complete online javascrip course',
             completed: true,
         },
         {
             id: 2,
-            todo: 'test2',
+            todo: 'Jog around the park 3x',
             completed: false,
         },
         {
             id: 3,
-            todo: 'test3',
+            todo: '10 minutes meditation',
             completed: false,
         },
         {
             id: 4,
-            todo: 'test4',
+            todo: 'Read for 1 hour',
             completed: false,
         },
         {
             id: 5,
-            todo: 'test5',
+            todo: 'Pick up groceries',
+            completed: false,
+        },
+        {
+            id: 6,
+            todo: 'Complete Todo App on Frontend Mentor',
             completed: false,
         },
     ]
@@ -100,22 +105,56 @@ function App() {
         setAllTodos(newTodo)
     }
 
+    function swapPos(index: number, way: 0 | 1) {
+        if (way === 0) {
+            if (index - 1 < 0) {
+                return
+            }
+            setTodo((prevTodo) => {
+                let newTodo = [...prevTodo]
+
+                let temp = newTodo[index - 1]
+                newTodo[index - 1] = newTodo[index]
+                newTodo[index] = temp
+
+                return newTodo
+            })
+        }
+
+        if (way === 1) {
+            if (index + 1 >= todo.length) {
+                return
+            }
+            setTodo((prevTodo) => {
+                let newTodo = [...prevTodo]
+
+                let temp = newTodo[index + 1]
+                newTodo[index + 1] = newTodo[index]
+                newTodo[index] = temp
+
+                return newTodo
+            })
+        }
+    }
+
     return (
         <main className={`font-josefin text-body ${darkMode ? 'dark' : ''} `}>
-            <div className='dark:bg-VeryDarkBlue bg-VeryLightGray min-h-screen transition-all duration-1000'>
+            <div className='dark:bg-VeryDarkBlue bg-VeryLightGray min-h-screen transition-all duration-200'>
                 <Header />
                 <div className='grid items-center place-content-center pt-5 md:pt-16 relative'>
                     <Todo darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
                     <TodoInput addTodo={addTodo} />
-                    <div className='shadow-lg rounded-b-md'>
+                    <div className='shadow-lg rounded-b-md relative dark:bg-inherit bg-VeryLightGray'>
                         {todo.map((item, i) => {
                             return (
                                 <TodoItem
                                     key={item.id}
+                                    index={i}
                                     item={item}
                                     rounded={i === 0}
                                     completeTodo={completeTodo}
                                     removeTodo={removeTodo}
+                                    swapPos={swapPos}
                                 />
                             )
                         })}
@@ -128,6 +167,9 @@ function App() {
                             clearCompleted={clearCompleted}
                         />
                     </div>
+                    <p className='text-center mt-10 text-DarkGrayishBlue'>
+                        Drag and drop to reorder list
+                    </p>
                 </div>
             </div>
         </main>
