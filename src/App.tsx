@@ -57,7 +57,7 @@ function App() {
         const newTodo = [
             ...todo,
             {
-                id: todo.length + 1,
+                id: Math.floor(Math.random() * 1000000),
                 todo: item,
                 completed: false,
             },

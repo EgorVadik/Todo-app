@@ -79,14 +79,18 @@ export default function TodoItem({
                 >
                     {item.todo}
                 </button>
-                <img
-                    src='/images/icon-cross.svg'
-                    alt='Cross icon'
-                    width={20}
-                    height={20}
-                    className='ml-auto mr-5 w-[16px] h-[16px] hidden group-hover:block cursor-pointer'
+                <button
+                    className='w-fit ml-auto mr-5 md:hidden group-hover:block'
                     onClick={() => removeTodo(item.id)}
-                />
+                >
+                    <img
+                        src='/images/icon-cross.svg'
+                        alt='Cross icon'
+                        width={20}
+                        height={20}
+                        className='w-[16px] h-[16px]'
+                    />
+                </button>
             </div>
         </Draggable>
     )
